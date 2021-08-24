@@ -1,0 +1,40 @@
+﻿
+@model Tuple<List<New>, List<Category>>
+<!-- Category News Start-->
+<div class="cat-news">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Item2)
+            {
+                <div class="col-md-6">
+                    <h2>
+                        @item.Name
+                    </h2>
+                    <div class="row cn-slider">
+                        @foreach (var newitem in Model.Item1)
+                        {
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="~/Images/News/@newitem.Image" width="350" height="223">
+                                    <div class="cn-title">
+                                        <p>@newitem.Title </p>
+                                        @Html.ActionLink("More ...", "News", new { id = newitem.Id }, new { @class = "text-Info" }) |
+                                        <a asp-controller="home" asp-action="News"
+                                           asp-route-id="@newitem.Id"
+                                           class="btn btn-primary m-1">View</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>
+<!-- Category News End-->
+<!-- Category News Start-->
+
+

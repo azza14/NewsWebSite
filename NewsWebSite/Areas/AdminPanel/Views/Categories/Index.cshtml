@@ -1,0 +1,44 @@
+﻿@model IEnumerable<NewsWebSite.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+  //  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:20px">
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p         >
+<br />
+    <table class="table table-borderless table-striped table-earning" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                @*<th style="width:55%">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

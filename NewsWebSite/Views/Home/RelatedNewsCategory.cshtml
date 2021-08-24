@@ -1,0 +1,23 @@
+﻿@model List<NewsWebSite.Models.New>
+
+
+@foreach (var item in Model) {
+<div class="nl-item">
+    <p>
+         @item.Title
+    </p>
+    <p>
+        @item.Topic
+    </p>
+    @*<div class="nl-img">
+         
+        <img src="~/Images/News/@Model.Image" width="825" height="525" alt="">
+    </div>
+    <div class="nl-title">
+        <a href="">@Model.Title</a>
+        <p>@Model.Topic</p>
+    </div>*@
+</div>
+ }
+
+

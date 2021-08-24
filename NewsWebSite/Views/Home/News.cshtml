@@ -1,0 +1,139 @@
+﻿@model NewsWebSite.ViewModel.NewsViewModel
+@{
+    ViewData["Title"] = "News";
+    var id = ViewBag.CategoryId;
+}
+<!-- Single News Start-->
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    @Html.HiddenFor(m => m.News.CategoryId)
+                    <div class="sn-img">
+                        @*<img src="~/Images/News/@Model.News.Image" width="825" height="525" alt="">*@
+                    </div>
+                    <div class="sn-content">
+                        <h1 class="sn-title">@Model.News.Title</h1>
+                        <p>     @Model.News.Topic</p>
+                    </div>
+                </div>
+                <div class="sn-related">
+                    <h2>Related News</h2>
+                    <div class="row sn-slider">
+                        <div class="col-md-4">
+                            <div class="sn-img">
+                                <img src="~/assets/img/news-350x223-1.jpg" />
+                                <div class="sn-title">
+                                    <p>Interdum et fames ac ante</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">In This Category</h2>
+                        <div class="news-list" id="divPartialNews">
+                            @*@Html.Partial("GetNewsRelatedCategory",Model.ListNews)*@
+                            <button data-category-id="@Model.News.Category.Id" class="btn btn-default js-category">click</button>
+                            <a asp-controller="home" asp-action="GetNewsRelatedCategory"
+                               asp-route-id="@ViewBag.CategoryId"
+                               class="btn btn-primary m-1">View</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <div class="tab-news">
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="#featured">Featured</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#popular">Popular</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#latest">Latest</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="featured" class="container tab-pane active">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="~/assets/img/news-350x223-1.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="popular" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="~/assets/img/news-350x223-4.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="latest" class="container tab-pane fade">
+                                    <div class="tn-news">
+                                        <div class="tn-img">
+                                            <img src="~/assets/img/news-350x223-3.jpg" />
+                                        </div>
+                                        <div class="tn-title">
+                                            <a href="">Lorem ipsum dolor sit amet consec adipis elit</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">News Category</h2>
+                        <div class="category">
+                            <a href="">@Model.News.Category.Name</a><span>(@ViewBag.categoriesCount)</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Single News End-->
+<script>
+    $(document).ready(function () {
+
+        $(".js-category").click(function () {
+            debugger;
+            $.ajax({
+                url: '/Home/GetNewsRelatedCategory',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    categoryId: button.attr("data-category-id")
+                },
+                success: function (data) {
+                    console.log(categoryId);
+                    alert("success");
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+
+
+    
+</script>
+
+
